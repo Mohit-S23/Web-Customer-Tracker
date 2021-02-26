@@ -20,7 +20,7 @@ public class Customer {
 	private String firstName;
 	
 	@Column(name="last_name")
-	private String lastname;
+	private String lastName;
 	
 	@Column(name="email")
 	private String email;
@@ -44,12 +44,12 @@ public class Customer {
 		this.firstName = firstName;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getEmail() {
@@ -64,7 +64,7 @@ public class Customer {
 	public String toString() {
 		return "Customer [id=" + id +
 				", firstName=" + firstName +
-				", lastname=" + lastname +
+				", lastName=" + lastName +
 				", email=" + email + 
 				"]";
 	}
