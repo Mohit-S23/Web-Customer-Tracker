@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mohit.spring.entity.Customer;
+import com.mohit.spring.util.SortUtils;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
@@ -80,6 +81,41 @@ public class CustomerDAOImpl implements CustomerDAO {
 		}
 		
 		List<Customer> customers = theQuery.getResultList();
+		return customers;
+	}
+
+	@Override
+	public List<Customer> getCustomers(int theSortField) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		String theFieldName = null;
+		
+		switch(theSortField) {
+		
+		case SortUtils.FIRST_NAME:
+			theFieldName = "firstName";
+			break;
+			
+		case SortUtils.LAST_NAME:
+			theFieldName = "lastName";
+			break;
+			
+		case SortUtils.EMAIL:
+			theFieldName = "email";
+			break;
+			
+		default:
+			theFieldName = "firstName";
+		
+		}
+		
+		String queryString = "from Customer order by " + theFieldName;
+		
+		Query<Customer> theQuery = currentSession.createQuery(queryString, Customer.class);
+		
+		List<Customer> customers = theQuery.getResultList();
+		
 		return customers;
 	}
 
